@@ -27,7 +27,7 @@ class Contact extends React.Component{
                     <i class={`fs-4 bi ${this.props.contact.isFavorite?"bi-bookmark-fill":"bi-bookmark"} btn btn-outline-secondary py-0`} style={{backgroundColor:"transparent",border:'none'}} onClick={this.toggel} ></i>
                     <i class="fs-4 bi bi-pencil-square btn btn-outline-secondary py-0" style={{backgroundColor:"transparent",border:"none"}}
                     ></i>
-                    <i class="fs-4 bi bi-trash btn btn-outline-danger py-0" style={{backgroundColor:"transparent",border:'none'}}></i>
+                    <i class="fs-4 bi bi-trash btn btn-outline-danger py-0" style={{backgroundColor:"transparent",border:'none'}} onClick={()=>this.props.removeContact(this.props.contact.id)}></i>
                 </div>
 
             </div>

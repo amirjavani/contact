@@ -55,6 +55,16 @@ class IndexContact extends React.Component{
         })
     }
 
+    removeContact=(ContactID)=>{
+        this.setState((pre)=>{
+            const modifiedContacts = pre.contacts.filter(contact => contact.id !== ContactID);
+
+            return{
+                contacts: modifiedContacts,
+            }
+        })
+    }
+
     handelerAddContact=(newContact)=>{
         const dublicat = this.state.contacts.filter((c)=>{
             if (c.email===newContact.email){
@@ -105,10 +115,10 @@ class IndexContact extends React.Component{
                         <AddContact handelerAddContact={this.handelerAddContact} />
                     </div>
                     <div style={{padding:"10px" ,width:"90%",}}>
-                        <FavoriteContacts toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === true)} />
+                        <FavoriteContacts removeContact={this.removeContact} toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === true)} />
                     </div>
                     <div style={{padding:"10px" , width:"90%",}}>
-                        <GeneralContacts toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === false)}/>
+                        <GeneralContacts removeContact={this.removeContact} toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === false)}/>
                     </div>
 
                 </div>
