@@ -64,6 +64,14 @@ class IndexContact extends React.Component{
             }
         })
     }
+    removeAllContacts=()=>{
+        
+        this.setState({
+            contacts:[]
+        })
+    }
+
+
 
 
     addRandomContact=(newContact)=>{
@@ -122,7 +130,7 @@ class IndexContact extends React.Component{
                             <AddRandomContact addRandomContact={this.addRandomContact}/>
                         </div>
                         <div style={{padding:"10px", flex:"auto"}}>
-                            <RemoveAllContect/>
+                            <RemoveAllContect removeAllContacts = {this.removeAllContacts}/>
                         </div>
                     </div>
                     <div style={{padding:"10px" , flex:"auto",width:"80%"}}>
