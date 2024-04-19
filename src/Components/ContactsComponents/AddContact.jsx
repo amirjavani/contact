@@ -22,7 +22,7 @@ class AddContact extends React.Component{
 
     render(){
         return(
-            <div className="d-flex  flex-column container border rounded text-white ">
+            <div className="d-flex flex-column container border rounded text-white ">
                 <p className="p-1">Add Contact</p> 
                 <form onSubmit={this.contactAdder} >
                     <div className="d-flex flex-row">

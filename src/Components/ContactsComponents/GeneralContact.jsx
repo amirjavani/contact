@@ -1,8 +1,13 @@
-const GeneralContacts =()=>{
+import Contact from "./Contact";
+
+const GeneralContacts =(props)=>{
 
     return(
-        <div>
-            <button className="btn btn-secondary">GeneralContact</button>
+        <div className="text-white">
+            <h1>Contacts</h1>
+            {props.contacts.map((contact,index) => (
+                <Contact contact={contact} key={index} > </Contact>
+            ))}
         </div>
     )
 }

@@ -39,6 +39,7 @@ class IndexContact extends React.Component{
         }
     }
 
+
     toggelContact=(ContactID)=>{
         
         this.setState((pre)=>{
@@ -72,8 +73,6 @@ class IndexContact extends React.Component{
             return {errorMassage:'email is already exist',successMassage:undefined}
         }
         
-        
-        
         else{
             this.setState((pre)=>{
             const newcon = {
@@ -97,19 +96,19 @@ class IndexContact extends React.Component{
                 <div style={{display:"flex",flexDirection:"column",alignItems:"center",textAlign:"center",justifyContent:"center",}} className="mx-5">
                     <div  style={{display:"flex",flexDirection:"row",alignContent:"center",justifyContent:"center",margin:"20px" ,width:"80s%"}}>
                         <div style={{padding:"10px", flex:"auto" }}>
-                            <AddRandomContact/>
+                            <AddRandomContact />
                         </div>
                         <div style={{padding:"10px", flex:"auto"}}>
                             <RemoveAllContect/>
                         </div>
                     </div>
-                    <div style={{padding:"10px" , flex:"auto",width:"100%"}}>
+                    <div style={{padding:"10px" , flex:"auto",width:"80%"}}>
                         <AddContact handelerAddContact={this.handelerAddContact} />
                     </div>
-                    <div style={{padding:"10px" , flex:"auto",}}>
+                    <div style={{padding:"10px" ,width:"90%",}}>
                         <FavoriteContacts toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === true)} />
                     </div>
-                    <div style={{padding:"10px" , flex:"auto"}}>
+                    <div style={{padding:"10px" , width:"90%",}}>
                         <GeneralContacts toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === false)}/>
                     </div>
 
