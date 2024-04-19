@@ -73,6 +73,7 @@ class IndexContact extends React.Component{
         }
         
         
+        
         else{
             this.setState((pre)=>{
             const newcon = {
@@ -94,7 +95,7 @@ class IndexContact extends React.Component{
             <div>
                 <Header></Header>
                 <div style={{display:"flex",flexDirection:"column",alignItems:"center",textAlign:"center",justifyContent:"center",}} className="mx-5">
-                    <div  style={{display:"flex",flexDirection:"row",alignContent:"center",justifyContent:"center",margin:"20px" ,width:"80%"}}>
+                    <div  style={{display:"flex",flexDirection:"row",alignContent:"center",justifyContent:"center",margin:"20px" ,width:"80s%"}}>
                         <div style={{padding:"10px", flex:"auto" }}>
                             <AddRandomContact/>
                         </div>
@@ -102,10 +103,10 @@ class IndexContact extends React.Component{
                             <RemoveAllContect/>
                         </div>
                     </div>
-                    <div style={{padding:"10px" , flex:"auto"}}>
+                    <div style={{padding:"10px" , flex:"auto",width:"100%"}}>
                         <AddContact handelerAddContact={this.handelerAddContact} />
                     </div>
-                    <div style={{padding:"10px" , flex:"auto"}}>
+                    <div style={{padding:"10px" , flex:"auto",}}>
                         <FavoriteContacts toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === true)} />
                     </div>
                     <div style={{padding:"10px" , flex:"auto"}}>
