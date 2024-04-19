@@ -65,6 +65,21 @@ class IndexContact extends React.Component{
         })
     }
 
+
+    addRandomContact=(newContact)=>{
+        this.setState((pre)=>{
+            const newcon = {
+                id:pre.contacts.length+1,
+                ...newContact,
+                isFavorite:false
+            }
+                return{
+                    contacts: [...pre.contacts, newcon]
+            }
+        });
+    }
+
+
     handelerAddContact=(newContact)=>{
         const dublicat = this.state.contacts.filter((c)=>{
             if (c.email===newContact.email){
@@ -84,15 +99,14 @@ class IndexContact extends React.Component{
         
         else{
             this.setState((pre)=>{
-            const newcon = {
-                id:pre.contacts.length+1,
-                ...newContact,
-                isFavorite:false
-            }
-            console.log(newcon);
-                return{
-                    contacts: [...pre.contacts, newcon]
-            } 
+                const newcon = {
+                    id:pre.contacts.length+1,
+                    ...newContact,
+                    isFavorite:false
+                }
+                    return{
+                        contacts: [...pre.contacts, newcon]
+                } 
             });
             return{errorMassage:undefined,successMassage:'success'}
         } 
@@ -105,7 +119,7 @@ class IndexContact extends React.Component{
                 <div style={{display:"flex",flexDirection:"column",alignItems:"center",textAlign:"center",justifyContent:"center",}} className="mx-5">
                     <div  style={{display:"flex",flexDirection:"row",alignContent:"center",justifyContent:"center",margin:"20px" ,width:"80s%"}}>
                         <div style={{padding:"10px", flex:"auto" }}>
-                            <AddRandomContact />
+                            <AddRandomContact addRandomContact={this.addRandomContact}/>
                         </div>
                         <div style={{padding:"10px", flex:"auto"}}>
                             <RemoveAllContect/>
