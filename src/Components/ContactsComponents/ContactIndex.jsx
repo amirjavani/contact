@@ -41,10 +41,9 @@ class IndexContact extends React.Component{
 
 
     toggelContact=(ContactID)=>{
-        
         this.setState((pre)=>{
             const modifiedContacts = pre.contacts.map(contact => {
-                if (contact.id === ContactID.id) {
+                if (contact.id === ContactID) {
                   return { ...contact, isFavorite:!contact.isFavorite};
                 }
                 return contact;

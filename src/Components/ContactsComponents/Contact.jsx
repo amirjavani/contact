@@ -6,6 +6,10 @@ class Contact extends React.Component{
         super(props);
     }
 
+    toggel=()=> {
+        this.props.toggelContact(this.props.contact.id)
+    }
+
     render(){
         return(
             <div className={`d-flex flex-row ${this.props.contact.isFavorite?"border-info":""} border rounded-2 p-2 m-2 text-white justify-content-between `}>
@@ -20,8 +24,9 @@ class Contact extends React.Component{
                     </div>
                 </div>
                 <div className="d-flex flex-column ">
-                    <i class={`fs-4 bi ${this.props.contact.isFavorite?"bi-bookmark-fill":"bi-bookmark"} btn btn-outline-secondary py-0`} style={{backgroundColor:"transparent",border:'none'}}></i>
-                    <i class="fs-4 bi bi-pencil-square btn btn-outline-secondary py-0" style={{backgroundColor:"transparent",border:"none"}}></i>
+                    <i class={`fs-4 bi ${this.props.contact.isFavorite?"bi-bookmark-fill":"bi-bookmark"} btn btn-outline-secondary py-0`} style={{backgroundColor:"transparent",border:'none'}} onClick={this.toggel} ></i>
+                    <i class="fs-4 bi bi-pencil-square btn btn-outline-secondary py-0" style={{backgroundColor:"transparent",border:"none"}}
+                    ></i>
                     <i class="fs-4 bi bi-trash btn btn-outline-danger py-0" style={{backgroundColor:"transparent",border:'none'}}></i>
                 </div>
 
