@@ -6,7 +6,7 @@ const GeneralContacts =(props)=>{
         <div className="text-white">
             <h1>Contacts</h1>
             {props.contacts.map((contact,index) => (
-                <Contact contact={contact} key={index}  toggelContact={props.toggelContact} removeContact={props.removeContact}> </Contact>
+                <Contact clickUpdate={props.clickUpdate} contact={contact} key={index}  toggelContact={props.toggelContact} removeContact={props.removeContact}> </Contact>
             ))}
         </div>
     )

@@ -11,6 +11,7 @@ import GeneralContacts from "./GeneralContact";
 class IndexContact extends React.Component{
     constructor (props){
         super(props);
+        this.handelerUpdateContact = this.handelerUpdateContact.bind()
         this.state ={
             contacts:[
                 {
@@ -34,7 +35,9 @@ class IndexContact extends React.Component{
                     phone: '09124320532',
                     isFavorite:true
                 }
-            ]
+            ],
+            selectedContact:undefined,
+            isUpdating:false,
 
         }
     }
@@ -87,7 +90,19 @@ class IndexContact extends React.Component{
         });
     }
 
-
+    handelUpdateContact=(contact)=>{
+        this.setState({
+            selectedContact:contact,
+            isUpdating:true
+        })
+    }
+    handelCancelUpdateContact=()=>{
+        this.setState({
+            selectedContact:undefined,
+            isUpdating:false
+        })
+    }
+    
     handelerAddContact=(newContact)=>{
         const dublicat = this.state.contacts.filter((c)=>{
             if (c.email===newContact.email){
@@ -120,6 +135,37 @@ class IndexContact extends React.Component{
         } 
     }
 
+    handelerUpdateContact=(Contact)=>{
+        // const dublicat = this.state.contacts.filter((c)=>{
+        //     if (c.email===newContact.email){
+        //         return 1
+        //     }
+        //     return null;
+        // });
+        if (Contact.name===''){
+            return {errorMassage:'Name  requered',successMassage:undefined}
+        } else if (Contact.email===''){
+            return {errorMassage:'Email  requered',successMassage:undefined}
+        }else if (Contact.phone===''){
+            return {errorMassage:'phone number requered',successMassage:undefined}
+        }else {
+            this.setState((pre)=>{
+                const modifiedContacts = pre.contacts.map((obj)=>{
+                    if(obj.id===this.state.selectedContact.id){
+                        return {...Contact,id:this.state.selectedContact.id,isFavorite:this.state.selectedContact.isFavorite};
+                    }
+                    return obj;
+                });
+                    return{
+                        isUpdating:false ,
+                        selectedContact:undefined ,
+                        contacts: modifiedContacts,      
+                } 
+            });
+            return{errorMassage:undefined,successMassage:'successfuly updated'}
+        } 
+    }
+
     render(){
         return(
             <div>
@@ -134,13 +180,13 @@ class IndexContact extends React.Component{
                         </div>
                     </div>
                     <div style={{padding:"10px" , flex:"auto",width:"80%"}}>
-                        <AddContact handelerAddContact={this.handelerAddContact} />
+                        <AddContact handelerUpdateContact={this.handelerUpdateContact} handelerAddContact={this.handelerAddContact} isUpdating={this.state.isUpdating}  selectedContact={this.state.selectedContact} cancelUpdate={this.handelCancelUpdateContact}/>
                     </div>
                     <div style={{padding:"10px" ,width:"90%",}}>
-                        <FavoriteContacts removeContact={this.removeContact} toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === true)} />
+                        <FavoriteContacts clickUpdate={this.handelUpdateContact} removeContact={this.removeContact} toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === true)} />
                     </div>
                     <div style={{padding:"10px" , width:"90%",}}>
-                        <GeneralContacts removeContact={this.removeContact} toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === false)}/>
+                        <GeneralContacts clickUpdate={this.handelUpdateContact} removeContact={this.removeContact} toggelContact={this.toggelContact} contacts={this.state.contacts.filter((O)=> O.isFavorite === false)}/>
                     </div>
 
                 </div>
